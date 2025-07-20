@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Recurring Date Picker with AI Task Suggestions
 
-## Getting Started
+This project implements a reusable and highly customizable recurring date picker component in React, inspired by the recurrence features found in applications like TickTick. It allows users to define complex recurring date patterns and even get AI-powered task suggestions based on the selected recurrence.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Flexible Recurrence Options:**
+    * **Daily:** Repeat every X days.
+    * **Weekly:** Repeat every X weeks, with selection for specific days of the week (e.g., every Monday, Wednesday, Friday).
+    * **Monthly:** Repeat every X months, with two advanced patterns:
+        * "Day X of the month" (e.g., Day 15 of every month).
+        * "The Nth Day of the Week of the month" (e.g., The second Tuesday of every month).
+    * **Yearly:** Repeat every X years on the same start date.
+* **Date Range Management:**
+    * Set a mandatory start date.
+    * Optionaly set an end date to limit the recurrence.
+* **Mini Calendar Preview:**
+    * A visual calendar displays the calculated recurring dates, providing immediate feedback on the selected pattern.
+    * Navigation to browse through months in the preview.
+* **AI-Powered Task Suggestions:**
+    * Integrates with the Gemini API to provide common recurring task or reminder suggestions based on the configured recurrence pattern.
+* **Reusable Component Design:**
+    * Broken down into smaller, manageable sub-components for clarity and reusability.
+    * Utilizes React Context API for efficient state management across the component tree.
+* **Clean and Responsive UI:**
+    * Styled with Tailwind CSS for a modern and adaptive user experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Framework:** React (compatible with Next.js App Router)
+* **Styling:** Tailwind CSS
+* **State Management:** React Context API
+* **AI Integration:** Google Gemini API (`gemini-2.0-flash` model)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Installation and Setup
 
-## Learn More
+To get this project up and running on your local machine:
 
-To learn more about Next.js, take a look at the following resources:
+1.  **Clone the repository:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    git clone <your-github-repo-url>
+    cd <your-project-directory-name>
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.  **Install dependencies:**
 
-## Deploy on Vercel
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Ensure Tailwind CSS is configured (if not already by create-next-app):**
+    If you used `npx create-next-app --tailwind`, this should be set up. Otherwise:
+    * Make sure `tailwind.config.js` is present in your root directory and its `content` array includes paths to your React components (e.g., `./app/**/*.{js,ts,jsx,tsx,mdx}`).
+    * Verify your global CSS file (e.g., `src/app/globals.css`) contains the Tailwind directives:
+        ```css
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        ```
+    * Ensure `src/app/globals.css` is imported in your `src/app/layout.tsx` (or `src/app/layout.jsx`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Run the development server:**
+
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+    The application should now be running at `http://localhost:3000`.
+
+## 💡 Usage
+
+Navigate to the application in your browser.
+
+1.  **Select Recurrence Type:** Choose between Daily, Weekly, Monthly, or Yearly.
+2.  **Set Interval:** Adjust the "Every X" field to define the frequency.
+3.  **Customize (if applicable):**
+    * For **Weekly**, select specific days of the week.
+    * For **Monthly**, choose between "Day X of the month" or "The Nth Day of the Week of the month" and configure accordingly.
+4.  **Define Date Range:** Pick a "Starts on" date and an optional "Ends on" date.
+5.  **Preview:** Observe the highlighted recurring dates in the mini calendar preview.
+6.  **Get AI Suggestions:** Click the "✨ Suggest Recurring Tasks" button to receive task ideas generated by the Gemini LLM based on your selected recurrence pattern.
+
+## 🧪 Testing
+
+(As per the original requirements, this section outlines how testing would be approached. Actual test files are not included in this README content.)
+
+* **Unit Tests:**
+    * Using Jest and React Testing Library.
+    * Focus on isolated logic, such as the `calculateRecurringDates` helper function, to ensure it correctly generates dates for various recurrence patterns.
+    * Test individual sub-components (`RecurrenceOptions`, `WeeklyOptions`, `MonthlyOptions`, `DateRangePicker`, `CalendarPreview`) to verify their rendering and state updates upon user interaction.
+* **Integration Tests:**
+    * Using Jest and React Testing Library.
+    * Test the complete `RecurringDatePicker` component to ensure all parts work together seamlessly.
+    * Simulate user flows (e.g., selecting a weekly recurrence, picking specific days, and verifying the calendar preview and summary update correctly).
+    * Test the AI suggestion flow, mocking the `fetch` API call to ensure the component handles loading, success, and error states for the Gemini API interaction.
+
+## 🤝 Contributing
+
+Feel free to fork this repository, open issues, or submit pull requests.
+
+## 📄 License
+
+This project is open-sourced under the MIT License.
